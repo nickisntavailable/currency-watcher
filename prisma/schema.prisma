@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FavoriteSet {
+  id            String   @id @default(cuid())
+  name          String
+  icon          String   @default("wallet")
+  currencyCodes String[]
+  baseCurrency  String?
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model RateSnapshot {
+  id        String   @id @default(cuid())
+  code      String
+  base      String
+  rate      Float
+  date      DateTime @db.Date
+  fetchedAt DateTime @default(now())
+
+  @@unique([code, base, date])
+}
+
+model AppSettings {
+  id           String  @id @default("singleton")
+  theme        String  @default("system")
+  mainCurrency String  @default("USD")
+  defaultSetId String?
+}
