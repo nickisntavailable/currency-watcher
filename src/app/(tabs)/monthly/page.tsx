@@ -1,8 +1,6 @@
 import { getRatesOnDate } from "@/lib/rates";
 import MonthlyScreen from "@/components/MonthlyScreen";
 
-export const revalidate = 3600;
-
 function lastTwelveMonthDates(): Date[] {
     const now = new Date();
     const dates: Date[] = [];

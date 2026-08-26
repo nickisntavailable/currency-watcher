@@ -2,8 +2,6 @@ import { getLatestRates, getRatesOnDate } from "@/lib/rates";
 import { getAppSettings } from "@/lib/app-settings";
 import TrendsScreen from "@/components/TrendsScreen";
 
-export const revalidate = 3600;
-
 function daysAgo(n: number): Date {
     const d = new Date();
     d.setDate(d.getDate() - n);

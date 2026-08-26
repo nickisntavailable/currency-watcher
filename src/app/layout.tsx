@@ -35,6 +35,12 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
+// Наборы валют и настройки читаются из Postgres на каждый запрос и меняются
+// произвольно (CRUD в /settings) — статическая генерация тут в принципе не подходит,
+// а на build-время ещё и требовала бы живого подключения к БД, которого при сборке
+// на хостинге может не быть. Форсируем динамический рендеринг для всего приложения.
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const [sets, settings] = await Promise.all([getFavoriteSets(), getAppSettings()]);
 
