@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "prisma migrate deploy && next start",
+    "start": "node -e \"const v=process.env.DATABASE_URL;console.log('DATABASE_URL debug:',JSON.stringify(v?v.slice(0,20)+'...':v),'length='+(v?v.length:0))\" && prisma migrate deploy && next start",
     "lint": "eslint",
     "postinstall": "prisma generate"
   },
